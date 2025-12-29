@@ -9,6 +9,9 @@ app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max por request
 app.secret_key = os.environ.get('FLASK_SECRET', 'troque_esta_chave_para_producao')
 DB = 'data.db'
 
+if not os.path.exists(DB):
+    import db_init
+    
 def get_db_connection():
     conn = sqlite3.connect(DB)
     conn.row_factory = sqlite3.Row
