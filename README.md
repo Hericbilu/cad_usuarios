@@ -1,23 +1,25 @@
-### file: README.md
-# Painel de Cadastro de Usuários (Flask + SQLite)
+# User Registration Panel (Flask + SQLite)
 
+A simple project to register users (CPF, name, email, phone, notes) and store files (PDF, DOCX, images, etc.) as BLOBs in a SQLite database.
 
-Projeto simples para cadastrar usuários (CPF, nome, email, telefone, observações) e armazenar arquivos (PDF, DOCX, imagens, etc.) como BLOBs no banco SQLite.
+## 🔗 Online Demo
+[https://cad-usuarios-d52x.onrender.com](https://cad-usuarios-d52x.onrender.com)
 
+**Features**
+- Create, edit, and view users
+- Search by name or CPF
+- Add text notes
+- Upload files (stored in the database as BLOBs)
+- View/download/delete user files
 
-**Recursos**
-- Cadastrar, editar e visualizar usuários
-- Pesquisar por nome ou CPF
-- Adicionar observações em texto
-- Fazer upload de arquivos (salvos no banco como BLOB)
-- Ver/baixar/excluir arquivos do usuário
+**How to use**
+1. Create a virtual environment: `python -m venv venv` and activate it.
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Run the database initialization script: `python db_init.py`.
+4. Start the app: `python main.py` and open `http://127.0.0.1:5000`.
 
+**Note:** For simplicity, files are stored in the database as BLOBs. For production, it is recommended to store files in the file system or S3 and save only references in the database.
 
-**Como usar**
-1. Crie um ambiente virtual: `python -m venv venv` e ative-o.
-2. Instale dependências: `pip install -r requirements.txt`.
-3. Rode o script de inicialização do banco: `python db_init.py`.
-4. Inicie: `python main.py` e abra `http://127.0.0.1:5000`.
+---
 
-
-Observação: por simplicidade os arquivos são guardados no banco como BLOBs. Para produção, recomenda-se armazenar arquivos no sistema de arquivos ou S3 e guardar apenas referências no banco.
+**Created by:** Heric Rodrigues Peres
