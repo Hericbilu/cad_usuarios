@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+<form method="get" action="{{ url_for('index') }}">
+<label>Pesquisar por nome ou CPF</label>
+<input name="q" value="{{ q }}" placeholder="Digite nome completo ou CPF" />
+<button class="btn" type="submit">Pesquisar</button>
+<a class="btn" href="{{ url_for('create_user') }}" style="margin-left:8px">Novo usuário</a>
+</form>
+</div>
+
+
+<div class="card">
+<h3>Lista de usuários</h3>
+{% if users %}
+<table>
+<thead><tr><th>Nome</th><th>CPF</th><th>Email</th><th>Criado</th><th></th></tr></thead>
+<tbody>
+{% for u in users %}
+<tr>
+<td>{{ u['name'] }}</td>
+<td>{{ u['cpf'] }}</td>
+<td>{{ u['email'] or '' }}</td>
+<td class="small">{{ u['created_at'] }}</td>
+<td><a href="{{ url_for('view_user', user_id=u['id']) }}">Ver / Editar</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<div class="muted">Nenhum usuário encontrado.</div>
+{% endif %}
+</div>
+{% endblock %}

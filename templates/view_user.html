@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+<h3>Usuário: {{ user['name'] }}</h3>
+<form method="post" enctype="multipart/form-data">
+<label>CPF</label>
+<input value="{{ user['cpf'] }}" disabled />
+<label>Nome</label>
+<input name="name" value="{{ user['name'] }}" />
+<label>Email</label>
+<input name="email" value="{{ user['email'] or '' }}" />
+<label>Telefone</label>
+<input name="phone" value="{{ user['phone'] or '' }}" />
+<label>Observações</label>
+<textarea name="notes" rows="6">{{ user['notes'] or '' }}</textarea>
+<label>Adicionar arquivos</label>
+<input type="file" name="files" multiple />
+<div style="margin-top:8px">
+<button class="btn" type="submit">Salvar</button>
+<form style="display:inline" method="post" action="{{ url_for('delete_user', user_id=user['id']) }}" onsubmit="return confirm('Confirma exclusão do usuário?')">
+<button class="btn danger" type="submit">Excluir usuário</button>
+</form>
+</div>
+</form>
+</div>
+
+
+<div class="card">
+<h4>Arquivos</h4>
+{% if files %}
+<table>
+<thead><tr><th>Arquivo</th><th>Tipo</th><th>Enviado</th><th></th></tr></thead>
+<tbody>
+{% for f in files %}
+<tr>
+<td>{{ f['filename'] }}</td>
+<td class="small">{{ f['content_type'] }}</td>
+<td class="small">{{ f['uploaded_at'] }}</td>
+<td>
+<a href="{{ url_for('download_file', file_id=f['id']) }}">Baixar</a>
+<form style="display:inline" method="post" action="{{ url_for('delete_file', file_id=f['id']) }}" onsubmit="return confirm('Remover arquivo?')">
+<button type="submit" style="background:none;border:none;color:#d32f2f;cursor:pointer;margin-left:8px">Remover</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<div class="muted">Nenhum arquivo enviado.</div>
+{% endif %}
+</div>
+{% endblock %}

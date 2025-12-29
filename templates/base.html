@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Usuários</title>
+<style>
+body{font-family: Arial, Helvetica, sans-serif; margin:20px;}
+.card{border:1px solid #ddd; padding:12px; border-radius:8px; margin-bottom:12px}
+input, textarea{width:100%; padding:8px; margin:6px 0}
+label{font-weight:600}
+.small{font-size:0.9em; color:#666}
+.btn{display:inline-block;padding:8px 12px;border-radius:6px;text-decoration:none;background:#1976d2;color:white}
+.danger{background:#d32f2f}
+.muted{color:#666}
+table{width:100%; border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+</style>
+</head>
+<body>
+<h1><a href="{{ url_for('index') }}">Painel de Usuários</a></h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="card">
+{% for m in messages %}
+<div>{{ m }}</div>
+{% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</body>
+</html>

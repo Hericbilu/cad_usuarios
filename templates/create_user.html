@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+<h3>Novo usuário</h3>
+<form method="post" enctype="multipart/form-data">
+<label>CPF *</label>
+<input name="cpf" required />
+<label>Nome *</label>
+<input name="name" required />
+<label>Email</label>
+<input name="email" />
+<label>Telefone</label>
+<input name="phone" />
+<label>Observações (texto livre)</label>
+<textarea name="notes" rows="4"></textarea>
+<label>Arquivos (pdf, docx, jpg, png...) - pode enviar vários</label>
+<input type="file" name="files" multiple />
+<div style="margin-top:8px">
+<button class="btn" type="submit">Criar</button>
+<a class="btn" href="{{ url_for('index') }}" style="background:#777;margin-left:6px">Cancelar</a>
+</div>
+</form>
+</div>
+{% endblock %}
